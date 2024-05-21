@@ -6,8 +6,8 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
 
-    // freopen("gymnastics.in", "r", stdin);
-    // freopen("gymnastics.out", "w", stdout);
+    freopen("gymnastics.in", "r", stdin);
+    freopen("gymnastics.out", "w", stdout);
 
     int numExercises;
     cin >> numExercises;
@@ -15,17 +15,17 @@ int main() {
     int numCows;
     cin >> numCows;
 
-    vector<int> cowPosition(numExercises, 0);
-    vector<vector<int>> cowVector(numCows, cowPosition);
+    vector<vector<int>> cowVector(numCows, vector<int> (numExercises, 0));
 
+    int cow;
     for (int i = 0; i < numExercises; ++i) {
         for (int j = 0; j < numCows; ++j) {
-            cin >> cowVector[j][i];
+            cin >> cow;
+            cowVector[cow - 1][i] = j;
         }
     }
 
-    int numConsitent = 0;
-    bool isConsistent = false;
+    int numConsistent = 0; bool isConsistent = false;
     for (int i = 0; i < numCows; ++i) {
         for (int j = 0; j < numCows; ++j) {
             isConsistent = true;
@@ -35,11 +35,11 @@ int main() {
                 }
             }
             if (isConsistent) {
-                numConsitent++;
+                numConsistent++;
             }
         }
     }
 
-    cout << numConsitent << "\n";
+    cout << numConsistent << "\n";
     return 0;
 }
